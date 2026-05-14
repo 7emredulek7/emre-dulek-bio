@@ -269,6 +269,7 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   min-height: 48px;
   padding: 0 18px;
   border: 1px solid var(--ink);
@@ -281,6 +282,13 @@ h1 {
     transform var(--speed) ease,
     box-shadow var(--speed) ease,
     background var(--speed) ease;
+}
+
+.button svg {
+  width: 17px;
+  height: 17px;
+  flex: 0 0 auto;
+  stroke-width: 2.4;
 }
 
 .button.primary {
@@ -404,12 +412,22 @@ main {
 }
 
 .section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 12px;
   color: var(--primary);
   font-family: var(--font-mono);
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+.section-kicker svg {
+  width: 15px;
+  height: 15px;
+  flex: 0 0 auto;
+  stroke-width: 2.4;
 }
 
 h2 {
@@ -713,6 +731,35 @@ h2 {
   text-decoration: none;
 }
 
+.contact-label,
+.contact-value {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.contact-label {
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.contact-value {
+  gap: 8px;
+  text-align: right;
+}
+
+.contact-label svg,
+.contact-value svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  stroke-width: 2.2;
+}
+
+.contact-value strong {
+  overflow-wrap: anywhere;
+}
+
 .contact-link + .contact-link {
   margin-top: 10px;
 }
@@ -870,6 +917,10 @@ h2 {
     flex-direction: column;
     justify-content: center;
     min-height: 68px;
+  }
+
+  .contact-value {
+    text-align: left;
   }
 }
 

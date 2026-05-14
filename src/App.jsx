@@ -1,4 +1,16 @@
 import React, { useEffect, useState } from "react";
+import {
+  AtSign,
+  Briefcase,
+  ExternalLink,
+  FolderGit2,
+  Layers,
+  Mail,
+  Phone,
+  Send,
+  Terminal,
+} from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const navItems = [
   { href: "#experience", label: "experience" },
@@ -115,7 +127,7 @@ function Topbar() {
         ))}
       </nav>
       <div className="status-chip" aria-label="Current role">
-        backend engineer
+        software engineer
       </div>
     </header>
   );
@@ -141,10 +153,12 @@ function Hero() {
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#experience">
-              Experience
+              <Terminal aria-hidden="true" />
+              <span>Experience</span>
             </a>
             <a className="button secondary" href="mailto:7emredulek7@gmail.com">
-              Say hi!
+              <Send aria-hidden="true" />
+              <span>Say hi!</span>
             </a>
           </div>
         </div>
@@ -176,11 +190,14 @@ function Hero() {
   );
 }
 
-function SectionHead({ kicker, title, children }) {
+function SectionHead({ kicker, title, icon: Icon, children }) {
   return (
     <div className="section-head reveal">
       <div>
-        <p className="section-kicker">{kicker}</p>
+        <p className="section-kicker">
+          {Icon && <Icon aria-hidden="true" />}
+          <span>{kicker}</span>
+        </p>
         <h2 id={`${title.toLowerCase()}-title`}>{title}</h2>
       </div>
       <p className="section-note">{children}</p>
@@ -208,7 +225,7 @@ function Experience() {
   return (
     <section className="section" id="experience" data-section="experience" aria-labelledby="experience-title">
       <div className="section-inner">
-        <SectionHead kicker="experience.log" title="Experience">
+        <SectionHead kicker="experience.log" title="Experience" icon={Briefcase}>
           One role at a time: the current backend work first, earlier systems work one click away.
         </SectionHead>
 
@@ -290,7 +307,7 @@ function Projects() {
   return (
     <section className="section" id="projects" data-section="projects" aria-labelledby="projects-title">
       <div className="section-inner">
-        <SectionHead kicker="projects.run" title="Projects">
+        <SectionHead kicker="projects.run" title="Projects" icon={FolderGit2}>
           Two projects from the CV show the same preference: build something that people can actually use,
           then keep the architecture grounded.
         </SectionHead>
@@ -336,7 +353,7 @@ function Stack() {
   return (
     <section className="section" id="stack" data-section="stack" aria-labelledby="stack-title">
       <div className="section-inner">
-        <SectionHead kicker="stack.inspect" title="Stack">
+        <SectionHead kicker="stack.inspect" title="Stack" icon={Layers}>
           Broad enough to move across product layers, focused enough to keep backend systems reliable.
         </SectionHead>
 
@@ -351,12 +368,43 @@ function Stack() {
 
 function Contact() {
   const email = "7emredulek7@gmail.com";
+  const contactLinks = [
+    {
+      label: "email",
+      value: email,
+      href: `mailto:${email}`,
+      icon: Mail,
+    },
+    {
+      label: "phone",
+      value: "+90 535 014 21 36",
+      href: "tel:+905350142136",
+      icon: Phone,
+    },
+    {
+      label: "linkedin",
+      value: "emre-dulek",
+      href: "https://www.linkedin.com/in/emre-dulek-982087243/",
+      icon: FaLinkedin,
+      external: true,
+    },
+    {
+      label: "github",
+      value: "7emredulek7",
+      href: "https://github.com/7emredulek7/",
+      icon: FaGithub,
+      external: true,
+    },
+  ];
 
   return (
     <section className="section contact" id="contact" data-section="contact" aria-labelledby="contact-title">
       <div className="section-inner">
         <div className="reveal">
-          <p className="section-kicker">contact.exec</p>
+          <p className="section-kicker">
+            <AtSign aria-hidden="true" />
+            <span>contact.exec</span>
+          </p>
           <h2 id="contact-title">Contact</h2>
           <p className="contact-copy">
             For recruiting, engineering conversations, or friend-to-friend catchups, email is the cleanest
@@ -365,22 +413,28 @@ function Contact() {
         </div>
 
         <aside className="contact-card reveal" aria-label="Contact options">
-          <a className="contact-link" href={`mailto:${email}`}>
-            <span>email</span>
-            <strong>{email}</strong>
-          </a>
-          <a className="contact-link" href="tel:+905350142136">
-            <span>phone</span>
-            <strong>+90 535 014 21 36</strong>
-          </a>
-          <a className="contact-link" href="https://www.linkedin.com/in/emre-dulek-982087243/" target="_blank" rel="noreferrer">
-            <span>linkedin</span>
-            <strong>emre-dulek</strong>
-          </a>
-          <a className="contact-link" href="https://github.com/7emredulek7/" target="_blank" rel="noreferrer">
-            <span>github</span>
-            <strong>7emredulek7</strong>
-          </a>
+          {contactLinks.map((link) => {
+            const Icon = link.icon;
+
+            return (
+              <a
+                className="contact-link"
+                href={link.href}
+                key={link.label}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noreferrer" : undefined}
+              >
+                <span className="contact-label">
+                  <Icon aria-hidden="true" />
+                  <span>{link.label}</span>
+                </span>
+                <span className="contact-value">
+                  <strong>{link.value}</strong>
+                  {link.external && <ExternalLink aria-hidden="true" />}
+                </span>
+              </a>
+            );
+          })}
         </aside>
       </div>
     </section>
