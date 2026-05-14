@@ -350,22 +350,7 @@ function Stack() {
 }
 
 function Contact() {
-  const [copyLabel, setCopyLabel] = useState("ready");
   const email = "7emredulek7@gmail.com";
-
-  const copyEmail = async () => {
-    setCopyLabel("copied");
-
-    try {
-      await navigator.clipboard.writeText(email);
-    } catch {
-      setCopyLabel(email);
-    }
-
-    window.setTimeout(() => {
-      setCopyLabel("ready");
-    }, 1800);
-  };
 
   return (
     <section className="section contact" id="contact" data-section="contact" aria-labelledby="contact-title">
@@ -375,7 +360,7 @@ function Contact() {
           <h2 id="contact-title">Contact</h2>
           <p className="contact-copy">
             For recruiting, engineering conversations, or friend-to-friend catchups, email is the cleanest
-            entry point. GitHub and LinkedIn can sit beside it once the public URLs are shared.
+            entry point. LinkedIn and GitHub are available for public work history and code.
           </p>
         </div>
 
@@ -388,11 +373,14 @@ function Contact() {
             <span>phone</span>
             <strong>+90 535 014 21 36</strong>
           </a>
-          <button className="copy-button" type="button" onClick={copyEmail}>
-            <span>copy email</span>
-            <strong>{copyLabel}</strong>
-          </button>
-          <p className="small-print">Public GitHub / LinkedIn URLs can be added once shared.</p>
+          <a className="contact-link" href="https://www.linkedin.com/in/emre-dulek-982087243/" target="_blank" rel="noreferrer">
+            <span>linkedin</span>
+            <strong>emre-dulek</strong>
+          </a>
+          <a className="contact-link" href="https://github.com/7emredulek7/" target="_blank" rel="noreferrer">
+            <span>github</span>
+            <strong>7emredulek7</strong>
+          </a>
         </aside>
       </div>
     </section>
