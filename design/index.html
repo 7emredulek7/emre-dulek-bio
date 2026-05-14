@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emre Dülek | Software Engineer</title>
+  <meta name="description" content="Personal bio website for Emre Dülek, a backend software engineer working with Go, .NET Core, AWS, microservices, and production systems.">
+  <style>
+    :root {
+      --primary: #3B82F6;
+      --secondary: #8B5CF6;
+      --success: #16A34A;
+      --warning: #D97706;
+      --danger: #DC2626;
+      --surface: #FFFFFF;
+      --text: #111827;
+      --neutral: #FFFFFF;
+      --ink: #111827;
+      --muted: color-mix(in oklch, var(--text) 68%, var(--surface));
+      --line: color-mix(in oklch, var(--text) 18%, var(--surface));
+      --soft: color-mix(in oklch, var(--text) 5%, var(--surface));
+      --blue-soft: color-mix(in oklch, var(--primary) 12%, white);
+      --violet-soft: color-mix(in oklch, var(--secondary) 10%, white);
+      --font-display: Limelight, "Arial Black", Impact, fantasy;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+      --max: 1180px;
+      --pad: clamp(18px, 4vw, 56px);
+      --radius: 16px;
+      --speed: 180ms;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      color: var(--text);
+      background: var(--surface);
+      scroll-behavior: smooth;
+      scroll-padding-top: 88px;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      font-family: var(--font-body);
+      line-height: 1.5;
+      text-rendering: optimizeLegibility;
+      overflow-x: clip;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+        linear-gradient(90deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(17, 24, 39, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: 16px;
+      z-index: 20;
+      transform: translateY(-160%);
+      padding: 10px 12px;
+      background: var(--ink);
+      color: var(--surface);
+      border-radius: 8px;
+      transition: transform var(--speed) ease;
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    .site-shell {
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 16px var(--pad) auto;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+      max-width: var(--max);
+      margin-inline: auto;
+      padding: 10px;
+      border: 1px solid color-mix(in oklch, var(--line) 78%, transparent);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 38px rgba(17, 24, 39, 0.08);
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      color: var(--surface);
+      background: var(--ink);
+      font-family: var(--font-display);
+      font-size: 19px;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: clamp(8px, 1.8vw, 22px);
+      min-width: 0;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 9px 3px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      text-decoration: none;
+      color: var(--muted);
+      white-space: nowrap;
+      transition: color var(--speed) ease;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 5px;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: var(--primary);
+      transition: transform var(--speed) ease;
+    }
+
+    .nav-links a[aria-current="true"],
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    .nav-links a[aria-current="true"]::after,
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .status-chip::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--success);
+      box-shadow: 0 0 0 5px color-mix(in oklch, var(--success) 16%, transparent);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: stretch;
+      padding: clamp(92px, 12vh, 136px) var(--pad) var(--pad);
+      background:
+        radial-gradient(circle at 78% 22%, color-mix(in oklch, var(--primary) 18%, transparent) 0 22%, transparent 42%),
+        linear-gradient(135deg, var(--surface) 0%, var(--soft) 58%, var(--violet-soft) 100%);
+    }
+
+    .hero-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.65fr);
+      gap: clamp(28px, 5vw, 72px);
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      margin: 0 0 18px;
+      padding: 8px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.72);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .eyebrow::before {
+      content: "$";
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 11ch;
+      font-family: var(--font-display);
+      font-size: clamp(58px, 10vw, 146px);
+      line-height: 0.88;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin-top: 26px;
+      font-size: clamp(20px, 2.2vw, 30px);
+      line-height: 1.18;
+      color: color-mix(in oklch, var(--ink) 86%, white);
+      text-wrap: pretty;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform var(--speed) ease, box-shadow var(--speed) ease, background var(--speed) ease;
+    }
+
+    .button.primary {
+      color: var(--surface);
+      background: var(--ink);
+      box-shadow: 6px 6px 0 var(--primary);
+    }
+
+    .button.secondary {
+      background: var(--surface);
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      transform: translate(-2px, -2px);
+      box-shadow: 8px 8px 0 var(--secondary);
+      outline: none;
+    }
+
+    .terminal-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--ink);
+      color: var(--surface);
+      box-shadow: 16px 16px 0 var(--primary);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 0 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--danger);
+    }
+
+    .dot:nth-child(2) {
+      background: var(--warning);
+    }
+
+    .dot:nth-child(3) {
+      background: var(--success);
+      margin-right: 8px;
+    }
+
+    .terminal-body {
+      padding: clamp(18px, 4vw, 32px);
+      font-family: var(--font-mono);
+    }
+
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: 12px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: clamp(12px, 1.6vw, 14px);
+    }
+
+    .terminal-line:last-child {
+      border-bottom: 0;
+    }
+
+    .terminal-key {
+      color: color-mix(in oklch, var(--primary) 78%, white);
+    }
+
+    .terminal-value {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 9px;
+      height: 1em;
+      margin-left: 4px;
+      translate: 0 2px;
+      background: var(--secondary);
+      animation: blink 1s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0;
+      }
+    }
+
+    main {
+      background: var(--surface);
+    }
+
+    .section {
+      padding: clamp(72px, 10vw, 126px) var(--pad);
+      border-top: 1px solid var(--line);
+    }
+
+    .section-inner {
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.72fr) minmax(280px, 0.48fr);
+      gap: clamp(24px, 5vw, 56px);
+      align-items: end;
+      margin-bottom: clamp(28px, 5vw, 56px);
+    }
+
+    .section-kicker {
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 6.2vw, 82px);
+      line-height: 0.96;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: clamp(16px, 1.6vw, 19px);
+      text-wrap: pretty;
+    }
+
+    .experience-switcher {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.34fr) minmax(0, 1fr);
+      gap: clamp(18px, 4vw, 42px);
+      align-items: stretch;
+    }
+
+    .experience-tabs {
+      display: grid;
+      align-content: start;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--soft);
+      overflow: hidden;
+    }
+
+    .experience-tab {
+      display: grid;
+      gap: 6px;
+      width: 100%;
+      padding: 16px 18px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: background var(--speed) ease, color var(--speed) ease, box-shadow var(--speed) ease;
+    }
+
+    .experience-tab:last-child {
+      border-bottom: 0;
+    }
+
+    .experience-tab strong {
+      color: inherit;
+      font-family: var(--font-body);
+      font-size: 17px;
+    }
+
+    .experience-tab span {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.3;
+    }
+
+    .experience-tab:hover,
+    .experience-tab:focus-visible {
+      outline: none;
+      color: var(--ink);
+      background: var(--blue-soft);
+    }
+
+    .experience-tab[aria-selected="true"] {
+      color: var(--ink);
+      background: var(--blue-soft);
+      box-shadow: inset 4px 0 0 var(--primary);
+    }
+
+    .experience-panels {
+      min-width: 0;
+    }
+
+    .experience-panel {
+      display: grid;
+      gap: 22px;
+      min-height: 430px;
+      padding: clamp(22px, 4vw, 38px);
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 12px 12px 0 var(--blue-soft);
+    }
+
+    .experience-panel[hidden] {
+      display: none;
+    }
+
+    .experience-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+    }
+
+    .experience-panel h3,
+    .project h3 {
+      margin-bottom: 10px;
+      font-size: clamp(21px, 2.2vw, 30px);
+      line-height: 1.08;
+    }
+
+    .experience-panel p {
+      color: var(--muted);
+      font-size: 16px;
+      text-wrap: pretty;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project {
+      display: flex;
+      min-height: 370px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(22px, 4vw, 34px);
+      border: 1px solid var(--ink);
+      border-radius: var(--radius);
+      background: var(--soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .project::before {
+      content: attr(data-code);
+      position: absolute;
+      right: -10px;
+      top: -26px;
+      font-family: var(--font-display);
+      font-size: clamp(96px, 13vw, 184px);
+      line-height: 1;
+      color: rgba(17, 24, 39, 0.055);
+    }
+
+    .project:nth-child(2) {
+      background: var(--violet-soft);
+    }
+
+    .project p {
+      max-width: 58ch;
+      color: var(--muted);
+      font-size: 17px;
+      text-wrap: pretty;
+    }
+
+    .project-foot {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 34px;
+      padding-top: 18px;
+      border-top: 1px solid color-mix(in oklch, var(--ink) 18%, transparent);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .skills-panel {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .stack-board,
+    .contact-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .stack-board {
+      padding: clamp(22px, 3vw, 30px);
+    }
+
+    .stack-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .stack-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 14px;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .stack-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .stack-row dt {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--primary);
+    }
+
+    .stack-row dd {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact {
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .contact .section-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.58fr);
+      gap: clamp(28px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .contact h2 {
+      color: var(--surface);
+    }
+
+    .contact .section-kicker {
+      color: color-mix(in oklch, var(--primary) 72%, white);
+    }
+
+    .contact-copy {
+      margin-top: 24px;
+      max-width: 720px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.28;
+      text-wrap: pretty;
+    }
+
+    .contact-card {
+      padding: 20px;
+      border-color: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+    }
+
+    .contact-link,
+    .copy-button {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-height: 56px;
+      padding: 0 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      color: var(--surface);
+      background: rgba(255, 255, 255, 0.06);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .contact-link + .contact-link,
+    .copy-button {
+      margin-top: 10px;
+    }
+
+    .copy-button {
+      cursor: pointer;
+    }
+
+    .copy-button:hover,
+    .contact-link:hover,
+    .copy-button:focus-visible,
+    .contact-link:focus-visible {
+      outline: none;
+      border-color: color-mix(in oklch, var(--primary) 70%, white);
+      background: rgba(59, 130, 246, 0.16);
+    }
+
+    .small-print {
+      margin-top: 12px;
+      color: rgba(255, 255, 255, 0.58);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 520ms ease, transform 520ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        grid-template-columns: auto 1fr;
+        inset-inline: 14px;
+        border-radius: 22px;
+      }
+
+      .nav-links {
+        order: 3;
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-inline: 4px;
+      }
+
+      .status-chip {
+        justify-self: end;
+      }
+
+      .hero {
+        padding-top: 148px;
+      }
+
+      .hero-inner,
+      .section-head,
+      .skills-panel,
+      .contact .section-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-card {
+        box-shadow: 10px 10px 0 var(--primary);
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      :root {
+        --pad: 16px;
+      }
+
+      .topbar {
+        inset-top: 10px;
+        padding: 8px;
+      }
+
+      .status-chip {
+        display: none;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .hero {
+        padding-top: 138px;
+      }
+
+      h1 {
+        font-size: clamp(49px, 18vw, 78px);
+      }
+
+      .hero-copy {
+        font-size: 19px;
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .terminal-line,
+      .experience-switcher,
+      .stack-row {
+        grid-template-columns: 1fr;
+      }
+
+      .terminal-line {
+        gap: 4px;
+      }
+
+      .experience-tabs {
+        display: flex;
+        overflow-x: auto;
+        border-radius: 14px;
+      }
+
+      .experience-tab {
+        min-width: 185px;
+        border-right: 1px solid var(--line);
+        border-bottom: 0;
+      }
+
+      .experience-panel {
+        min-height: 0;
+        box-shadow: 8px 8px 0 var(--blue-soft);
+      }
+
+      .project {
+        min-height: 330px;
+      }
+
+      .contact-link,
+      .copy-button {
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 68px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <div class="site-shell">
+    <header class="topbar" aria-label="Primary navigation">
+      <a class="brand-mark" href="#top" aria-label="Emre Dülek home">ED</a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#experience" aria-current="false">experience</a>
+        <a href="#projects" aria-current="false">projects</a>
+        <a href="#stack" aria-current="false">stack</a>
+        <a href="#contact" aria-current="false">contact</a>
+      </nav>
+      <div class="status-chip" aria-label="Current role">backend engineer</div>
+    </header>
+
+    <main id="content">
+      <section class="hero" id="top" data-section="top" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div class="hero-main reveal">
+            <p class="eyebrow">emre --profile</p>
+            <h1 id="hero-title">Emre Dülek</h1>
+            <p class="hero-copy">
+              Backend software engineer building APIs, microservices, and cloud systems that stay understandable after they ship.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="#experience">Read the system log</a>
+              <a class="button secondary" href="mailto:7emredulek7@gmail.com">Contact Emre</a>
+            </div>
+          </div>
+
+          <aside class="terminal-card reveal" aria-label="Profile summary terminal">
+            <div class="terminal-bar">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="dot" aria-hidden="true"></span>
+              <span class="dot" aria-hidden="true"></span>
+              /usr/emre/profile
+            </div>
+            <div class="terminal-body">
+              <div class="terminal-line">
+                <span class="terminal-key">role</span>
+                <span class="terminal-value">Software Engineer - Backend</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-key">now</span>
+                <span class="terminal-value">Armut Technology, remote</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-key">systems</span>
+                <span class="terminal-value">Go, .NET Core, AWS, Docker, Grafana</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-key">education</span>
+                <span class="terminal-value">Computer Engineering + Electrical &amp; Electronics double major</span>
+              </div>
+              <div class="terminal-line">
+                <span class="terminal-key">prompt</span>
+                <span class="terminal-value">clear code, clear APIs, clear ownership<span class="cursor" aria-hidden="true"></span></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="experience" data-section="experience" aria-labelledby="experience-title">
+        <div class="section-inner">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">experience.log</p>
+              <h2 id="experience-title">Experience</h2>
+            </div>
+            <p class="section-note">
+              One role at a time: the current backend work first, earlier systems work one click away.
+            </p>
+          </div>
+
+          <div class="experience-switcher reveal">
+            <div class="experience-tabs" role="tablist" aria-label="Experience entries">
+              <button class="experience-tab" id="tab-armut" type="button" role="tab" aria-selected="true" aria-controls="panel-armut">
+                <strong>Armut Technology</strong>
+                <span>Backend engineer / remote</span>
+              </button>
+              <button class="experience-tab" id="tab-digitus" type="button" role="tab" aria-selected="false" aria-controls="panel-digitus" tabindex="-1">
+                <strong>Digitus Technology</strong>
+                <span>Backend engineer / remote</span>
+              </button>
+              <button class="experience-tab" id="tab-aselsan" type="button" role="tab" aria-selected="false" aria-controls="panel-aselsan" tabindex="-1">
+                <strong>ASELSAN</strong>
+                <span>Linux kernel intern / on-site</span>
+              </button>
+              <button class="experience-tab" id="tab-tusas" type="button" role="tab" aria-selected="false" aria-controls="panel-tusas" tabindex="-1">
+                <strong>Turkish Aerospace</strong>
+                <span>Hardware design intern / on-site</span>
+              </button>
+            </div>
+
+            <div class="experience-panels">
+              <article class="experience-panel" id="panel-armut" role="tabpanel" aria-labelledby="tab-armut">
+                <div class="experience-meta">
+                  <span>November 2025 - Current</span>
+                  <span>Remote</span>
+                </div>
+                <div>
+                  <h3>Software Engineer - Backend</h3>
+                  <p>
+                    Designs and develops microservice and event-driven backend systems with Go and .NET Core, manages AWS infrastructure with CDK, and builds RESTful APIs for products reaching 20,000,000+ real users.
+                  </p>
+                </div>
+                <div class="tags" aria-label="Technologies used at Armut Technology">
+                  <span class="tag">Go</span>
+                  <span class="tag">.NET Core</span>
+                  <span class="tag">AWS CDK</span>
+                  <span class="tag">Lambda</span>
+                  <span class="tag">SNS/SQS</span>
+                  <span class="tag">Docker</span>
+                  <span class="tag">Grafana</span>
+                </div>
+              </article>
+
+              <article class="experience-panel" id="panel-digitus" role="tabpanel" aria-labelledby="tab-digitus" hidden>
+                <div class="experience-meta">
+                  <span>February 2024 - November 2025</span>
+                  <span>Remote</span>
+                </div>
+                <div>
+                  <h3>Software Engineer - Backend</h3>
+                  <p>
+                    Built monolithic and microservice backend solutions with .NET Core, SQL and NoSQL databases, plus deployment, monitoring, logging, and client-facing delivery work for systems serving 100,000+ users.
+                  </p>
+                </div>
+                <div class="tags" aria-label="Technologies used at Digitus Technology">
+                  <span class="tag">CQRS</span>
+                  <span class="tag">ONION</span>
+                  <span class="tag">PostgreSQL</span>
+                  <span class="tag">MongoDB</span>
+                  <span class="tag">Redis</span>
+                  <span class="tag">Elasticsearch</span>
+                  <span class="tag">OAuth2/JWT</span>
+                </div>
+              </article>
+
+              <article class="experience-panel" id="panel-aselsan" role="tabpanel" aria-labelledby="tab-aselsan" hidden>
+                <div class="experience-meta">
+                  <span>July 2023 - August 2023</span>
+                  <span>On-site</span>
+                </div>
+                <div>
+                  <h3>Computer Engineering Intern - Linux Kernel Development</h3>
+                  <p>
+                    Developed Linux device drivers and kernel modules, connecting user-space applications with kernel-space behavior through ioctl, rootfs, and sysfs.
+                  </p>
+                </div>
+                <div class="tags" aria-label="Technologies used at ASELSAN">
+                  <span class="tag">Linux</span>
+                  <span class="tag">C/C++</span>
+                  <span class="tag">ARM</span>
+                  <span class="tag">Qemu</span>
+                  <span class="tag">Petalinux</span>
+                </div>
+              </article>
+
+              <article class="experience-panel" id="panel-tusas" role="tabpanel" aria-labelledby="tab-tusas" hidden>
+                <div class="experience-meta">
+                  <span>August 2024 - September 2024</span>
+                  <span>On-site</span>
+                </div>
+                <div>
+                  <h3>Electrical and Electronics Engineering Intern - Hardware Design</h3>
+                  <p>
+                    Designed and developed an EMI/EMC filter for noise filtering and power protection, bringing the hardware side of systems thinking into the same engineering practice.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="projects" data-section="projects" aria-labelledby="projects-title">
+        <div class="section-inner">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">projects.run</p>
+              <h2 id="projects-title">Projects</h2>
+            </div>
+            <p class="section-note">
+              Two projects from the CV show the same preference: build something that people can actually use, then keep the architecture grounded.
+            </p>
+          </div>
+
+          <div class="projects-grid">
+            <article class="project reveal" data-code="01">
+              <div>
+                <p class="section-kicker">co-founder / medical app</p>
+                <h3>Care+</h3>
+                <p>
+                  Startup project formally supported by Dokuz Eylül University's pre-incubation center. Emre designed, built, and tested RESTful APIs with ASP.NET, MSSQL, and React Native, then deployed and managed the server and database on Azure.
+                </p>
+              </div>
+              <div class="project-foot">
+                <span>ASP.NET / MSSQL / React Native</span>
+                <span>Azure Web Services</span>
+              </div>
+            </article>
+
+            <article class="project reveal" data-code="02">
+              <div>
+                <p class="section-kicker">education / project management</p>
+                <h3>TPS</h3>
+                <p>
+                  A project management tool developed with a professor and currently used by students in coursework and lectures. The value is direct: a classroom workflow turned into a working product surface.
+                </p>
+              </div>
+              <div class="project-foot">
+                <span>Project management tool</span>
+                <span>Used in lectures</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="stack" data-section="stack" aria-labelledby="stack-title">
+        <div class="section-inner">
+          <div class="section-head reveal">
+            <div>
+              <p class="section-kicker">stack.inspect</p>
+              <h2 id="stack-title">Stack</h2>
+            </div>
+            <p class="section-note">
+              Broad enough to move across product layers, focused enough to keep backend systems reliable.
+            </p>
+          </div>
+
+          <div class="skills-panel">
+            <div class="stack-board reveal">
+              <h3>Education</h3>
+              <dl class="stack-list">
+                <div class="stack-row">
+                  <dt>2020-24</dt>
+                  <dd>B.S. Computer Engineering, Izmir University of Economics. Graduated with the highest grade in department. GPA 3.67.</dd>
+                </div>
+                <div class="stack-row">
+                  <dt>2021-25</dt>
+                  <dd>B.S. Electrical and Electronics Engineering double major, Izmir University of Economics. GPA 3.77.</dd>
+                </div>
+              </dl>
+            </div>
+
+            <div class="stack-board reveal">
+              <h3>Technical interests</h3>
+              <dl class="stack-list">
+                <div class="stack-row">
+                  <dt>Languages</dt>
+                  <dd>Go, C/C++, C#/.NET, Python/Django, Java, JavaScript/Node.js</dd>
+                </div>
+                <div class="stack-row">
+                  <dt>Cloud &amp; data</dt>
+                  <dd>AWS CDK, Lambda, ECR/EC2, SNS/SQS, Azure, PostgreSQL, MySQL, MSSQL, MongoDB, Redis, Elasticsearch</dd>
+                </div>
+                <div class="stack-row">
+                  <dt>Design</dt>
+                  <dd>OOP/SOLID, design patterns, CLEAN/ONION architecture, CQRS, microservices, event-driven architecture, webhooks</dd>
+                </div>
+                <div class="stack-row">
+                  <dt>Testing</dt>
+                  <dd>Unit testing, integration testing, XUnit, Testcontainers</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contact" id="contact" data-section="contact" aria-labelledby="contact-title">
+        <div class="section-inner">
+          <div class="reveal">
+            <p class="section-kicker">contact.exec</p>
+            <h2 id="contact-title">Contact</h2>
+            <p class="contact-copy">
+              For recruiting, engineering conversations, or friend-to-friend catchups, email is the cleanest entry point. GitHub and LinkedIn can sit beside it once the public URLs are shared.
+            </p>
+          </div>
+
+          <aside class="contact-card reveal" aria-label="Contact options">
+            <a class="contact-link" href="mailto:7emredulek7@gmail.com">
+              <span>email</span>
+              <strong>7emredulek7@gmail.com</strong>
+            </a>
+            <a class="contact-link" href="tel:+905350142136">
+              <span>phone</span>
+              <strong>+90 535 014 21 36</strong>
+            </a>
+            <button class="copy-button" type="button" data-copy="7emredulek7@gmail.com">
+              <span>copy email</span>
+              <strong data-copy-label>ready</strong>
+            </button>
+            <p class="small-print">Public GitHub / LinkedIn URLs can be added once shared.</p>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const navLinks = Array.from(document.querySelectorAll(".nav-links a"));
+    const sections = Array.from(document.querySelectorAll("[data-section]"));
+    const revealItems = Array.from(document.querySelectorAll(".reveal"));
+    const copyButton = document.querySelector("[data-copy]");
+    const experienceTabs = Array.from(document.querySelectorAll(".experience-tab"));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const navObserver = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (!visible) return;
+
+      navLinks.forEach((link) => {
+        const target = link.getAttribute("href").replace("#", "");
+        link.setAttribute("aria-current", String(target === visible.target.id));
+      });
+    }, {
+      threshold: [0.22, 0.44, 0.66],
+      rootMargin: "-18% 0px -54% 0px"
+    });
+
+    sections.forEach((section) => navObserver.observe(section));
+
+    const setExperienceTab = (activeTab) => {
+      experienceTabs.forEach((tab) => {
+        const isActive = tab === activeTab;
+        const panel = document.getElementById(tab.getAttribute("aria-controls"));
+
+        tab.setAttribute("aria-selected", String(isActive));
+        tab.tabIndex = isActive ? 0 : -1;
+        if (panel) panel.hidden = !isActive;
+      });
+    };
+
+    experienceTabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => setExperienceTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        const nextKeys = ["ArrowDown", "ArrowRight"];
+        const prevKeys = ["ArrowUp", "ArrowLeft"];
+        let nextIndex = index;
+
+        if (nextKeys.includes(event.key)) nextIndex = (index + 1) % experienceTabs.length;
+        if (prevKeys.includes(event.key)) nextIndex = (index - 1 + experienceTabs.length) % experienceTabs.length;
+        if (event.key === "Home") nextIndex = 0;
+        if (event.key === "End") nextIndex = experienceTabs.length - 1;
+        if (nextIndex === index) return;
+
+        event.preventDefault();
+        experienceTabs[nextIndex].focus();
+        setExperienceTab(experienceTabs[nextIndex]);
+      });
+    });
+
+    copyButton?.addEventListener("click", async () => {
+      const value = copyButton.dataset.copy;
+      const label = copyButton.querySelector("[data-copy-label]");
+
+      try {
+        await navigator.clipboard.writeText(value);
+        label.textContent = "copied";
+      } catch {
+        label.textContent = value;
+      }
+
+      window.setTimeout(() => {
+        label.textContent = "ready";
+      }, 1800);
+    });
+  </script>
+</body>
+</html>
