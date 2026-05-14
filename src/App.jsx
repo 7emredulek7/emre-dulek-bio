@@ -141,10 +141,10 @@ function Hero() {
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#experience">
-              Read the system log
+              Experience
             </a>
             <a className="button secondary" href="mailto:7emredulek7@gmail.com">
-              Contact Emre
+              Say hi!
             </a>
           </div>
         </div>

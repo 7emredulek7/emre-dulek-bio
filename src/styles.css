@@ -291,6 +291,7 @@ h1 {
 
 .button.secondary {
   background: var(--surface);
+  box-shadow: 6px 6px 0 var(--primary);
 }
 
 .button:hover,
