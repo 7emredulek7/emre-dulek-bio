@@ -5,7 +5,7 @@ export default function Topbar() {
   return (
     <header className="topbar" aria-label="Primary navigation">
       <a className="brand-mark" href="#top" aria-label="Emre Dülek home">
-        ED
+        /
       </a>
       <nav className="nav-links" aria-label="Sections">
         {navItems.map((item) => (
