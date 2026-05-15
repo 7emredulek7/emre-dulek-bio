@@ -8,8 +8,7 @@ export default function Projects() {
     <section className="section" id="projects" data-section="projects" aria-labelledby="projects-title">
       <div className="section-inner">
         <SectionHead kicker="projects.run" title="Projects" icon={FolderGit2}>
-          Two projects from the CV show the same preference: build something that people can actually use,
-          then keep the architecture grounded.
+          I like making strange projects at the intersection of hardware and software by night.
         </SectionHead>
 
         <div className="projects-grid">

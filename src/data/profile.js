@@ -21,7 +21,7 @@ export const experienceEntries = [
     location: "Remote",
     title: "Software Engineer - Backend",
     body: "Designs and develops microservice and event-driven backend systems with Go and .NET Core, manages AWS infrastructure with CDK, and builds RESTful APIs for products reaching 20,000,000+ real users.",
-    tags: ["Go", ".NET Core", "AWS CDK", "Lambda", "SNS/SQS", "Docker", "Grafana"],
+    tags: ["Go", ".NET Core", "AWS CDK", "Lambda", "SNS/SQS", "S3", "CI/CD", "Docker", "Grafana", "MSSQL", "MongoDB", "Redis", "Integration testing", "Unit testing", "Testcontainers"],
   },
   {
     id: "digitus",
@@ -31,7 +31,7 @@ export const experienceEntries = [
     location: "Remote",
     title: "Software Engineer - Backend",
     body: "Built monolithic and microservice backend solutions with .NET Core, SQL and NoSQL databases, plus deployment, monitoring, logging, and client-facing delivery work for systems serving 100,000+ users.",
-    tags: ["CQRS", "ONION", "PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "OAuth2/JWT"],
+    tags: [".NET Core", "CQRS", "CLEAN Architecture", "PostgreSQL", "MongoDB", "Redis", "Elasticsearch", "Docker", "AWS", "Unit testing"],
   },
   {
     id: "aselsan",
@@ -49,9 +49,9 @@ export const experienceEntries = [
     tabMeta: "Hardware design intern / on-site",
     dates: "August 2024 - September 2024",
     location: "On-site",
-    title: "Electrical and Electronics Engineering Intern - Hardware Design",
+    title: "Electrical & Electronics Intern - Hardware Design",
     body: "Designed and developed an EMI/EMC filter for noise filtering and power protection, bringing the hardware side of systems thinking into the same engineering practice.",
-    tags: [],
+    tags: ["Altium Designer", "LTSpice", "PCB"],
   },
 ];
 

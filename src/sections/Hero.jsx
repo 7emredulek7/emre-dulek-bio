@@ -10,8 +10,7 @@ export default function Hero() {
           <p className="eyebrow">emre --profile</p>
           <h1 id="hero-title">Emre Dülek</h1>
           <p className="hero-copy">
-            Backend software engineer building APIs, microservices, and cloud systems that stay
-            understandable after they ship.
+            Software engineer focused on backend systems and distributed architecture. I build microservices, cloud infrastructure, and scalable products.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#experience">

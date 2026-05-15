@@ -24,7 +24,7 @@ export default function Experience() {
     <section className="section" id="experience" data-section="experience" aria-labelledby="experience-title">
       <div className="section-inner">
         <SectionHead kicker="experience.log" title="Experience" icon={Briefcase}>
-          One role at a time: the current backend work first, earlier systems work one click away.
+          I’m a software engineer based in <span className="font-bold text-[var(--secondary)]">Türkiye</span>. I enjoy working close to the system level — infrastructure, observability, and architecture decisions.
         </SectionHead>
 
         <div className="experience-switcher reveal">
