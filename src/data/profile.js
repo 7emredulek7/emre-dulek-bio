@@ -21,7 +21,7 @@ export const experienceEntries = [
     location: "Remote",
     title: "Software Engineer - Backend",
     body: "Designs and develops microservice and event-driven backend systems with Go and .NET Core, manages AWS infrastructure with CDK, and builds RESTful APIs for products reaching 20,000,000+ real users.",
-    tags: ["Go", ".NET Core", "AWS CDK", "Lambda", "SNS/SQS", "S3", "CI/CD", "Docker", "Grafana", "MSSQL", "MongoDB", "Redis", "Integration testing", "Unit testing", "Testcontainers"],
+    tags: ["Go", ".NET Core", "AWS CDK", "Lambda", "SNS/SQS", "S3", "CI/CD", "Docker", "Grafana", "MSSQL", "MongoDB", "Redis", "Unit testing", "Integration testing", "Testcontainers"],
   },
   {
     id: "digitus",
