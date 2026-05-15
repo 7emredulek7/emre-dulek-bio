@@ -95,11 +95,6 @@ p {
   transform: translateY(0);
 }
 
-.site-shell {
-  position: relative;
-  z-index: 1;
-}
-
 .topbar {
   position: fixed;
   inset: 16px var(--pad) auto;
@@ -387,10 +382,6 @@ h1 {
   50% {
     opacity: 0;
   }
-}
-
-main {
-  background: var(--surface);
 }
 
 .section {
