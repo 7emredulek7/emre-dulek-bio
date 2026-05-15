@@ -9,7 +9,7 @@ export const terminalRows = [
   ["role", "Software Engineer - Backend"],
   ["now", "Armut Technology, remote"],
   ["systems", "Go, .NET Core, AWS, Docker, Grafana"],
-  ["education", "Computer Engineering + Electrical & Electronics double major"],
+  ["education", "Computer Engineering | Electrical & Electronics Engineering"],
 ];
 
 export const experienceEntries = [
@@ -58,30 +58,30 @@ export const experienceEntries = [
 export const projects = [
   {
     code: "01",
-    kicker: "co-founder / medical app",
-    title: "Care+",
-    body: "Startup project formally supported by Dokuz Eylül University's pre-incubation center. Emre designed, built, and tested RESTful APIs with ASP.NET, MSSQL, and React Native, then deployed and managed the server and database on Azure.",
-    foot: ["ASP.NET / MSSQL / React Native", "Azure Web Services"],
+    title: "HTTP Protocol from Stratch",
+    body: "A minimal HTTP/1.1 server implementation in Go built completely from scratch using TCP — without using Go’s net/http package. The project focuses on understanding how web servers work internally by handling low-level network communication, request parsing, routing, headers, and response generation manually.",
+    foot: ["Go", "TCP", "HTTP"],
   },
   {
     code: "02",
-    kicker: "education / project management",
-    title: "TPS",
-    body: "A project management tool developed with a professor and currently used by students in coursework and lectures. The value is direct: a classroom workflow turned into a working product surface.",
-    foot: ["Project management tool", "Used in lectures"],
+    title: "Mechanical Keyboard from Stratch",
+    body: "A custom mechanical keyboard designed and built completely from scratch! The project included designing the PCB in KiCAD, manufacturing the hardware, implementing and flashing custom firmware using QMK, and modeling the keyboard case for 3D printing using Blender.",
+    foot: ["KiCAD", "PCB", "Firmware", "C++", "3D Design"],
   },
 ];
 
 export const educationRows = [
   {
     term: "2020-24",
-    detail:
-      "B.S. Computer Engineering, Izmir University of Economics. Graduated with the highest grade in department. GPA 3.67.",
+    degree: "B.S. Computer Engineering",
+    school: "Izmir University of Economics",
+    highlights: ["Highest grade in department", "GPA 3.67"],
   },
   {
     term: "2021-25",
-    detail:
-      "B.S. Electrical and Electronics Engineering double major, Izmir University of Economics. GPA 3.77.",
+    degree: "B.S. Electrical & Electronics Engineering",
+    school: "Izmir University of Economics",
+    highlights: ["Double major", "GPA 3.77"],
   },
 ];
 
@@ -93,16 +93,16 @@ export const technicalRows = [
   {
     term: "Cloud & data",
     detail:
-      "AWS CDK, Lambda, ECR/EC2, SNS/SQS, Azure, PostgreSQL, MySQL, MSSQL, MongoDB, Redis, Elasticsearch",
+      "AWS CDK, Lambda, ECR/EC2, SNS/SQS, Azure, PostgreSQL, MySQL, MSSQL, MongoDB, Redis, Elasticsearch, Grafana",
   },
   {
     term: "Design",
     detail:
-      "OOP/SOLID, design patterns, CLEAN/ONION architecture, CQRS, microservices, event-driven architecture, webhooks",
+      "Distributed systems, microservices, event-driven architecture, design patterns, OOP/SOLID, DDD, CLEAN architecture, CQRS",
   },
   {
     term: "Testing",
-    detail: "Unit testing, integration testing, XUnit, Testcontainers",
+    detail: "Unit testing, integration testing, XUnit, Testcontainers, Cucumber",
   },
 ];
 

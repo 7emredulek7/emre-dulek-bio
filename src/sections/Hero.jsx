@@ -39,9 +39,9 @@ export default function Hero() {
               </div>
             ))}
             <div className="terminal-line">
-              <span className="terminal-key">prompt</span>
+              <span className="terminal-key">env</span>
               <span className="terminal-value">
-                clear code, clear APIs, clear ownership<span className="cursor" aria-hidden="true"></span>
+                coffee, music, focus<span className="cursor" aria-hidden="true"></span>
               </span>
             </div>
           </div>

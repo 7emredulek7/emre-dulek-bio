@@ -43,8 +43,7 @@ export default function Contact() {
           </p>
           <h2 id="contact-title">Contact</h2>
           <p className="contact-copy">
-            For recruiting, engineering conversations, or friend-to-friend catchups, email is the cleanest
-            entry point. LinkedIn and GitHub are available for public work history and code.
+            Feel free to reach out if you want to talk about anything! Always open to building cool things.
           </p>
         </div>
 

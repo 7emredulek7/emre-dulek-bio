@@ -54,8 +54,13 @@ export default function Experience() {
                     });
                   }}
                 >
-                  <strong>{entry.company}</strong>
-                  <span>{entry.tabMeta}</span>
+                  <span className="experience-tab-orb" aria-hidden="true">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="experience-tab-copy">
+                    <strong>{entry.company}</strong>
+                    <span>{entry.tabMeta}</span>
+                  </span>
                 </button>
               );
             })}

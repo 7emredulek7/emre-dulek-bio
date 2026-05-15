@@ -8,14 +8,15 @@ export default function Projects() {
     <section className="section" id="projects" data-section="projects" aria-labelledby="projects-title">
       <div className="section-inner">
         <SectionHead kicker="projects.run" title="Projects" icon={FolderGit2}>
-          I like making strange projects at the intersection of hardware and software by night.
+          I like making strange projects at the intersection of{" "}
+          <span className="font-bold text-[var(--secondary)]">hardware</span> and{" "}
+          <span className="font-bold text-[var(--secondary)]">software</span> by night.
         </SectionHead>
 
         <div className="projects-grid">
           {projects.map((project) => (
             <article className="project reveal" data-code={project.code} key={project.title}>
               <div>
-                <p className="section-kicker">{project.kicker}</p>
                 <h3>{project.title}</h3>
                 <p>{project.body}</p>
               </div>
