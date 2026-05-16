@@ -48,6 +48,11 @@ body {
   overflow-x: clip;
 }
 
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none !important;
+}
+
 body::before {
   content: "";
   position: fixed;
@@ -95,6 +100,67 @@ p {
 
 .skip-link:focus {
   transform: translateY(0);
+}
+
+.custom-cursor {
+  --cursor-tone: #111827;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 140ms ease;
+}
+
+.custom-cursor.is-visible {
+  opacity: 1;
+}
+
+.custom-cursor-dot,
+.custom-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.custom-cursor-dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 999px;
+  background: var(--cursor-tone);
+  transition: transform 90ms ease;
+}
+
+.custom-cursor-ring {
+  width: 26px;
+  height: 26px;
+  margin: -13px 0 0 -13px;
+  border: 1px solid var(--cursor-tone);
+  border-radius: 999px;
+  background: transparent;
+  transition:
+    transform 170ms var(--ease-smooth),
+    opacity var(--speed) ease;
+}
+
+.custom-cursor.is-interactive .custom-cursor-ring {
+  opacity: 0;
+  transform: scale(0.35);
+}
+
+.custom-cursor.is-pressed .custom-cursor-dot {
+  --cursor-dot-scale: 0.66;
+}
+
+.custom-cursor.is-pressed .custom-cursor-ring {
+  opacity: 0.62;
+}
+
+.custom-cursor.is-interactive.is-pressed .custom-cursor-ring {
+  opacity: 0;
 }
 
 .topbar {

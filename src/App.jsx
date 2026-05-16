@@ -1,4 +1,5 @@
 import React from "react";
+import CustomCursor from "./components/CustomCursor.jsx";
 import Topbar from "./components/Topbar.jsx";
 import useRevealAndNavObservers from "./hooks/useRevealAndNavObservers.js";
 import Contact from "./sections/Contact.jsx";
@@ -12,6 +13,7 @@ export default function App() {
 
   return (
     <>
+      <CustomCursor />
       <a className="skip-link" href="#content">
         Skip to content
       </a>
