@@ -24,6 +24,8 @@
   --pad: clamp(18px, 4vw, 56px);
   --radius: 16px;
   --speed: 180ms;
+  --speed-panel: 360ms;
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 * {
@@ -464,6 +466,8 @@ h2 {
 }
 
 .experience-tab {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 38px minmax(0, 1fr);
   gap: 6px;
@@ -476,14 +480,24 @@ h2 {
   background: transparent;
   text-align: left;
   cursor: pointer;
+  overflow: hidden;
   transition:
-    background var(--speed) ease,
-    color var(--speed) ease,
-    box-shadow var(--speed) ease;
+    background var(--speed) var(--ease-smooth),
+    color var(--speed) var(--ease-smooth),
+    box-shadow var(--speed) var(--ease-smooth);
 }
 
 .experience-tab:last-child {
   border-bottom: 0;
+}
+
+.experience-tab-active {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--blue-soft);
+  box-shadow: inset 4px 0 0 var(--primary);
+  pointer-events: none;
 }
 
 .experience-tab-orb {
@@ -502,13 +516,15 @@ h2 {
   font-weight: 800;
   line-height: 1;
   transition:
-    color var(--speed) ease,
-    border-color var(--speed) ease,
-    background var(--speed) ease,
-    transform var(--speed) ease;
+    color var(--speed) var(--ease-smooth),
+    border-color var(--speed) var(--ease-smooth),
+    background var(--speed) var(--ease-smooth),
+    transform var(--speed) var(--ease-smooth);
 }
 
 .experience-tab-copy {
+  position: relative;
+  z-index: 1;
   display: grid;
   gap: 6px;
   min-width: 0;
@@ -535,8 +551,7 @@ h2 {
 
 .experience-tab[aria-selected="true"] {
   color: var(--ink);
-  background: var(--blue-soft);
-  box-shadow: inset 4px 0 0 var(--primary);
+  background: transparent;
 }
 
 .experience-tab[aria-selected="true"] .experience-tab-orb {
@@ -548,6 +563,7 @@ h2 {
 
 .experience-panels {
   min-width: 0;
+  position: relative;
 }
 
 .experience-panel {
@@ -559,10 +575,7 @@ h2 {
   border-radius: var(--radius);
   background: var(--surface);
   box-shadow: 12px 12px 0 var(--blue-soft);
-}
-
-.experience-panel[hidden] {
-  display: none;
+  will-change: opacity, transform;
 }
 
 .experience-meta {
@@ -862,8 +875,8 @@ h2 {
   opacity: 0;
   transform: translateY(18px);
   transition:
-    opacity 520ms ease,
-    transform 520ms ease;
+    opacity 620ms var(--ease-smooth),
+    transform 620ms var(--ease-smooth);
 }
 
 .reveal.is-visible {
@@ -1070,7 +1083,7 @@ h2 {
   }
 
   h2 {
-    font-size: clamp(36px, 13vw, 54px);
+    font-size: clamp(34px, 11.5vw, 50px);
     line-height: 1;
   }
 
